@@ -34,15 +34,8 @@ public class Immigrant {
         return (this.firstName + " " + this.lastName);
     }
 
-    public void getGreenCardRequest(int ImmigrantID) {
-        // Get the Green Card Request JSON object to database.
-    }
-
-    public void saveGreenCardRequestObj(Object Immigrant) {
-        // Save the Green Card Request JSON object to database
-    }
-
-    public String createImmigrant(String firstName, String lastName, String ssn, String dob, String streetAddress, String city, String state, int zipCode, String emailAddress) {
+    // Saves the Immigrant object to the database.
+    public String saveImmigrant(String firstName, String lastName, String ssn, String dob, String streetAddress, String city, String state, int zipCode, String emailAddress) {
         if (isNullOrEmpty(firstName) || 
             isNullOrEmpty(lastName) || 
             isNullOrEmpty(ssn) || 
@@ -54,12 +47,13 @@ public class Immigrant {
             isNullOrEmpty(emailAddress)) {
             return "Invalid Input";
         }
-        // I assume we will save the Immigrant object to the database in the future and return a immigrantID, but for now we can use the ssn as a unique identifier.
+        // A Immigrant object will be saved to the database in the future and return a immigrantID, but for now we can use the ssn as a unique identifier.
         String immigrantID = ssn;
         return immigrantID;
     }
 
-    public String updateImmigrant(Immigrant updatedImmigrant) {
+    // Updates the Immigrant object in the database with the provided updatedImmigrant object.
+    public String editImmigrant(Immigrant updatedImmigrant) {
         if (updatedImmigrant == null || updatedImmigrant.getImmigrantID() < 0 ||
             isNullOrEmpty(updatedImmigrant.getFirstName()) ||
             isNullOrEmpty(updatedImmigrant.getLastName()) ||
@@ -72,22 +66,30 @@ public class Immigrant {
             isNullOrEmpty(updatedImmigrant.getEmailAddress())) {
                 return "Invalid Input field in the updatedImmigrant object";
         }
-        // I assume the updated Immigrant object will be saved to the database and it will return a success message.
+        // The updated Immigrant object will be saved to the database and the database service will return a success message.
         return "Success";
     }
 
+    // Retrieves the Immigrant object from the database for the given immigrantID.
     public Immigrant getImmigrant(int immigrantID) {
         if (immigrantID < 0) {
             return null;
         }
-        // Return fake immigrant object for the test. I assume it will retrieve the Immigrant object from the database in the future.
+        // Return a fake immigrant object for the test. It will retrieve the Immigrant object from the database in the future.
         return new Immigrant(immigrantID, "John", "Doe", "123-45-6789", "05/05/1998", "Example Street", "City", "VA", 12345, "john.doe@email.com");
         }
 
+    // Not implemented yet, but will check if a Immigrant exists in the system. 
+    public boolean queryImmigrant(int immigrantID) {
+        return false;
+    }
+
+    // Helper method
     private boolean isNullOrEmpty(String s) {
         return (s == null || s.trim().isEmpty());
     }
 
+    // Public getters for testing purposes
     public int getImmigrantID() {return immigrantID;}
     public String getFirstName() {return firstName;}
     public String getLastName() {return lastName;}

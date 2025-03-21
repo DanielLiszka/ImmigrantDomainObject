@@ -7,14 +7,14 @@ public class ImmigrantTest {
     @Test
     public void testCreateImmigrant_ValidInput() {
         Immigrant immigrant = new Immigrant();
-        String result = immigrant.createImmigrant("John", "Doe", "123-45-6789", "05/05/1998", "Example Street", "City", "VA", 12345, "john.doe@email.com");
+        String result = immigrant.saveImmigrant("John", "Doe", "123-45-6789", "05/05/1998", "Example Street", "City", "VA", 12345, "john.doe@email.com");
         assertEquals("123-45-6789", result);
     }
 
     @Test
     public void testCreateImmigrant_InvalidInput() {
         Immigrant immigrant = new Immigrant();
-        String result = immigrant.createImmigrant("", "", "", "", "", "", "", 0, "");
+        String result = immigrant.saveImmigrant("", "", "", "", "", "", "", 0, "");
         assertEquals("Invalid Input", result);
     }
 
@@ -37,7 +37,7 @@ public class ImmigrantTest {
     public void testUpdateImmigrant_ValidInput() {
         Immigrant immigrant = new Immigrant();
         Immigrant updated = new Immigrant(2, "John", "Doe", "123-45-6789", "05/05/1998", "Example Street", "City", "VA", 12345, "john.doe@email.com");
-        String result = immigrant.updateImmigrant(updated);
+        String result = immigrant.editImmigrant(updated);
         assertEquals("Success", result);
     }
 
@@ -45,7 +45,7 @@ public class ImmigrantTest {
     public void testUpdateImmigrant_InvalidInput() {
         Immigrant immigrant = new Immigrant();
         Immigrant updated = new Immigrant(0, "", "", "", "", "", "", "", 0, "");
-        String result = immigrant.updateImmigrant(updated);
+        String result = immigrant.editImmigrant(updated);
         assertEquals("Invalid Input field in the updatedImmigrant object", result);
     }
 }
